@@ -14,9 +14,21 @@ export default function App() {
         { id: crypto.randomUUID(), title: newItem, completed: false },
       ];
     });
+
+    setNewItem("")
   }
 
-  console.log(todos);
+  function toggleTodo(id, completed){
+    setTodos(currentTodos =>{
+      return currentTodos.map(todo => {
+        if (todo.id === id){
+          return {...todo, completed}
+        } else {
+          return todo;
+        }
+      })
+    })
+  }
 
   return (
     <>
@@ -38,7 +50,11 @@ export default function App() {
           return (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" checked={todo.completed}/>
+              <input 
+              type="checkbox" 
+              checked={todo.completed}
+              onChange={e => toggleTodo(todo.id, e.target.checked)}
+              />
               {todo.title}
             </label>
             <button className="btn btn-danger">Delete</button>
