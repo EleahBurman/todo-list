@@ -9,7 +9,7 @@ export default function App() {
     const localValue = localStorage.getItem("ITEMS")
     if (localValue == null) return []
     return JSON.parse(localValue)
-  });
+  })
 
   useEffect(() =>{
     localStorage.setItem("ITEMS", JSON.stringify(todos))
